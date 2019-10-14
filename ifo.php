@@ -181,7 +181,13 @@ class ifo extends pdo
 		} 
 		public static function diff($s,$e) {return round((strtotime($s)-strtotime($e))/86400); }
 	
-	
+	public static function shorten($word, $str = 10) {
+		if (strlen($word) > $str) { 
+			if (function_exists("mb_substr")) $word = mb_substr($word, 0, $str, "UTF-8").'..'; 
+			else $word = substr($word, 0, $str).'..'; }
+		return $word; 
+	}
+
 	public static function fileUpload($file,$name,$target,$type,$width=false,$twidth=false,$kalite=90){
 		$return = null;
 		$avaible = null;
