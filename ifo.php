@@ -106,7 +106,14 @@ class ifo extends pdo
 
          return   mb_convert_case($deger, MB_CASE_TITLE, 'UTF-8');
 		}
-		
+		public static function tr_strtoupper($text)
+			{//TR KARAKTER UYUMLU TÜRM HARFLERİ BÜYÜLT
+			    $search=array("ç","i","ı","ğ","ö","ş","ü");
+			    $replace=array("Ç","İ","I","Ğ","Ö","Ş","Ü");
+			    $text=str_replace($search,$replace,$text);
+			    $text=strtoupper($text);
+			    return $text;
+		}
 		public static function control($value,$type='text',$definedValue='',$undefinedValue='') 
 		{/* Returns a value , which are controlled by types */
 			$value=trim($value);
